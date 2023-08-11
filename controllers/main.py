@@ -49,6 +49,7 @@ class Sign(http.Controller):
                     elif self.sign_type == 'hr.employee':
                         try:
                             employee = self.env['hr.employee'].search([('address_home_id','=',current_request_item.partner_id.id),], order='id', limit=1)
+                            _logger.info('----------------employee----------------- %s', employee)
                             auto_field = employee.mapped(item_type['auto_field'])
                             item_type['auto_value'] = auto_field[0] if auto_field and not isinstance(auto_field, models.BaseModel) else ''
                         except Exception:
