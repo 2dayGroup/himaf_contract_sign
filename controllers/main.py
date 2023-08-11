@@ -54,8 +54,9 @@ class Sign(Sign):
                             _logger.info('----------------employee----------------- %s', employee)
                             auto_field = employee.mapped(item_type['auto_field'])
                             item_type['auto_value'] = auto_field[0] if auto_field and not isinstance(auto_field, models.BaseModel) else ''
-                        except Exception:
+                        except Exception as e:
                             item_type['auto_value'] = ''
+                            _logger.exception("----------------employee errorr-----------------: %s" % str(e))
                 if item_type['item_type'] in ['signature', 'initial']:
                     signature_field_name = 'sign_signature' if item_type['item_type'] == 'signature' else 'sign_initials'
                     user_signature = current_request_item._get_user_signature(signature_field_name)
