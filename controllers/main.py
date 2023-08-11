@@ -11,11 +11,12 @@ from PyPDF2 import PdfFileReader
 from odoo import http, models, tools, Command, _
 from odoo.http import request, content_disposition
 from odoo.addons.iap.tools import iap_tools
+from odoo.addons.sign.controllers.main import Sign
 
 _logger = logging.getLogger()
 
 
-class Sign(http.Controller):
+class Sign(Sign):
 
     def get_document_qweb_context(self, sign_request_id, token, **post):
         sign_request = http.request.env['sign.request'].sudo().browse(sign_request_id).exists()
