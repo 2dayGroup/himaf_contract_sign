@@ -41,7 +41,10 @@ class Sign(Sign):
         if current_request_item:
             for item_type in sign_item_types:
                 if item_type['auto_field']:
+                    _logger.info('----------------partner----------------- %s', current_request_item.partner_id)
+                    _logger.info('----------------partnerId----------------- %s', current_request_item.partner_id.id)
                     if item_type['sign_type'] == 'res.partner':
+                        
                         try:
                             auto_field = current_request_item.partner_id.mapped(item_type['auto_field'])
                             item_type['auto_value'] = auto_field[0] if auto_field and not isinstance(auto_field, models.BaseModel) else ''
